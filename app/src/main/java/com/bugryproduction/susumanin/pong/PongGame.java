@@ -95,8 +95,69 @@ class PongGame extends SurfaceView implements Runnable{
     // will stop the thread
     @Override
     public void run() {
+        // mPlaying gives us finer control
+        // rather than just relying on the calls to run
+        // mPlaying must be true AND
+        // the thread running for the main
+        // loop to execute
+        while (mPlaying) {
+
+            // What time is it now at the start of the loop?
+            long frameStartTime = System.currentTimeMillis();
+
+            // Provided the game isn't paused
+            // call the update method
+            if(!mPaused){
+                update();
+                // Now the bat and ball are in
+                // their new positions
+                // we can see if there have
+                // been any collisions
+                detectCollisions();
+
+            }
+
+            // The movement has been handled and collisions
+            // detected now we can draw the scene.
+            draw();
+
+            // How long did this frame/loop take?
+            // Store the answer in timeThisFrame
+            long timeThisFrame =
+                    System.currentTimeMillis() - frameStartTime;
+
+            // Make sure timeThisFrame is at least 1 millisecond
+            // because accidentally dividing
+            // by zero crashes the game
+            if (timeThisFrame >0) {
+                // Store the current frame rate in mFPS
+                // ready to pass to the update methods of
+                // mBat and mBall next frame/loop
+                mFPS = MILLIS_IN_SECOND / timeThisFrame;
+            }
+        }
     }
 
+
+    private void update() {
+        // Update the bat and the ball
+
+    }
+
+    private void detectCollisions(){
+        // Has the bat hit the ball?
+
+        // Has the ball hit the edge of the screen
+
+        // Bottom
+
+        // Top
+
+        // Left
+
+        // Right
+
+    }
 
     // Draw the game objects and the HUD
     void draw() {
