@@ -25,14 +25,16 @@ public class PongActivity extends Activity {
     @Override
     protected void onResume() {
         super.onResume();
+        super.onResume();
 
         // More code here later in the chapter
+        mPongGame.resume();
     }
 
     @Override
     protected void onPause() {
         super.onPause();
-
+        mPongGame.pause();
         // More code here later in the chapter
     }
 }
